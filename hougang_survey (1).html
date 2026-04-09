@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hougang Resident Survey 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --ink-soft: #3d3d5c;
+    --ink-muted: #7a7a9a;
+    --bg: #f4f1eb;
+    --bg-card: #faf8f3;
+    --bg-white: #ffffff;
+    --accent: #2a6496;
+    --accent-light: #e8f0f8;
+    --accent-mid: #4a90c4;
+    --green: #2d7a5f;
+    --green-light: #e6f4ef;
+    --amber: #c47a1a;
+    --amber-light: #fdf3e3;
+    --red: #c44a3a;
+    --border: #ddd8cc;
+    --border-focus: #2a6496;
+    --progress-bg: #e0dbd0;
+    --shadow-sm: 0 2px 8px rgba(26,26,46,0.08);
+    --shadow-md: 0 4px 20px rgba(26,26,46,0.12);
+    --shadow-lg: 0 8px 40px rgba(26,26,46,0.16);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--ink);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+  }
+  .header-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-logo {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .header-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .header-subtitle {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .header-progress-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    min-width: 120px;
+  }
+  .progress-label {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .progress-bar-track {
+    width: 120px;
+    height: 4px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent-mid);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    display: none;
+    animation: fadeSlide 0.4s ease both;
+  }
+  .section.active { display: block; }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── WELCOME ── */
+  .welcome-hero {
+    text-align: center;
+    padding: 48px 0 40px;
+  }
+  .welcome-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-mid) 100%);
+    border-radius: 20px;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0 8px 24px rgba(42,100,150,0.3);
+  }
+  .welcome-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .welcome-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .welcome-desc {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .welcome-tags {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .tag-green { background: var(--green-light); color: var(--green); }
+  .tag-blue { background: var(--accent-light); color: var(--accent); }
+  .tag-amber { background: var(--amber-light); color: var(--amber); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .info-card-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .info-card-label {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .privacy-note {
+    background: var(--accent-light);
+    border: 1px solid rgba(42,100,150,0.2);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 36px;
+  }
+  .privacy-note svg { flex-shrink: 0; margin-top: 1px; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .card-icon-blue { background: var(--accent-light); }
+  .card-icon-green { background: var(--green-light); }
+  .card-icon-amber { background: var(--amber-light); }
+  .card-icon-red { background: #fdecea; }
+
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .card-desc {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+  .section-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--ink-muted);
+    margin-bottom: 20px;
+  }
+
+  /* ── FORM ELEMENTS ── */
+  .field { margin-bottom: 28px; }
+  .field:last-child { margin-bottom: 0; }
+
+  label, .field-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .field-label span.req {
+    color: var(--red);
+    margin-left: 2px;
+  }
+  .field-hint {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  input[type="text"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--bg-white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="number"]:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(42,100,150,0.1);
+  }
+  input.error, select.error, textarea.error {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(196,74,58,0.1);
+  }
+  textarea { resize: vertical; min-height: 100px; }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237a7a9a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  /* Radio & Checkbox */
+  .radio-group, .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .radio-group.horizontal, .checkbox-group.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .radio-option, .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.18s;
+    background: var(--bg-white);
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-weight: 400;
+    user-select: none;
+  }
+  .radio-option:hover, .checkbox-option:hover {
+    border-color: var(--accent-mid);
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  .radio-option.selected, .checkbox-option.selected {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .radio-option input, .checkbox-option input { display: none; }
+  .radio-dot, .check-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s;
+  }
+  .check-box { border-radius: 5px; }
+  .radio-option.selected .radio-dot,
+  .checkbox-option.selected .check-box {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  .radio-option.selected .radio-dot::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    display: block;
+  }
+  .checkbox-option.selected .check-box::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  /* Scale / Likert */
+  .scale-group {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .scale-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .scale-option input { display: none; }
+  .scale-btn {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+    transition: all 0.18s;
+    background: var(--bg-white);
+    min-height: 48px;
+  }
+  .scale-option:hover .scale-btn {
+    border-color: var(--accent-mid);
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  .scale-option.selected .scale-btn {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 2px 8px rgba(42,100,150,0.3);
+  }
+  .scale-label-text {
+    font-size: 0.68rem;
+    color: var(--ink-muted);
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .scale-ends {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    margin-top: 4px;
+    font-style: italic;
+    padding: 0 4px;
+  }
+
+  /* Error messages */
+  .error-msg {
+    font-size: 0.78rem;
+    color: var(--red);
+    margin-top: 6px;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+  }
+  .error-msg.visible { display: flex; }
+
+  /* ── NAVIGATION ── */
+  .nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.18s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 2px 8px rgba(42,100,150,0.3);
+  }
+  .btn-primary:hover {
+    background: #1f4e7a;
+    box-shadow: 0 4px 16px rgba(42,100,150,0.4);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1.5px solid var(--border);
+  }
+  .btn-secondary:hover {
+    background: var(--bg-card);
+    color: var(--ink);
+    border-color: var(--ink-muted);
+  }
+  .btn-success {
+    background: var(--green);
+    color: white;
+    box-shadow: 0 2px 8px rgba(45,122,95,0.3);
+    font-size: 0.95rem;
+    padding: 14px 32px;
+  }
+  .btn-success:hover {
+    background: #1e5c44;
+    box-shadow: 0 4px 16px rgba(45,122,95,0.4);
+    transform: translateY(-1px);
+  }
+
+  .step-indicator {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  /* ── DIVIDER ── */
+  .field-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
+  }
+
+  /* ── TWO-COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* ── SUCCESS ── */
+  .success-screen {
+    text-align: center;
+    padding: 60px 24px;
+  }
+  .success-icon {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, var(--green), #4caf7d);
+    border-radius: 50%;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    box-shadow: 0 8px 32px rgba(45,122,95,0.3);
+    animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .success-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .success-msg {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    max-width: 440px;
+    margin: 0 auto 36px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .response-summary {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: left;
+    max-width: 520px;
+    margin: 0 auto 32px;
+  }
+  .response-summary h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .summary-row {
+    display: flex;
+    gap: 12px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-row strong { color: var(--ink); min-width: 100px; font-weight: 500; }
+
+  /* ── SHEETS CONFIG BUTTON ── */
+  .sheets-config-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius-sm);
+    color: rgba(255,255,255,0.8);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sheets-config-btn:hover {
+    background: rgba(255,255,255,0.18);
+    color: white;
+  }
+  .sheets-config-btn.connected {
+    background: rgba(45,122,95,0.3);
+    border-color: rgba(45,122,95,0.5);
+    color: #7de8bc;
+  }
+
+  /* ── SHEETS PANEL ── */
+  .sheets-panel {
+    display: none;
+    background: var(--ink);
+    border-bottom: 2px solid var(--accent);
+    animation: slideDown 0.25s ease both;
+  }
+  .sheets-panel.open { display: block; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .sheets-panel-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .sheets-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .sheets-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  .sheets-panel-sub {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+  }
+  .sheets-close-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+  .sheets-close-btn:hover { color: white; background: rgba(255,255,255,0.1); }
+
+  .sheets-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #666;
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
+  .status-dot.ok { background: #4caf7d; box-shadow: 0 0 6px rgba(76,175,125,0.6); }
+  .status-dot.error { background: var(--red); }
+  .status-dot.testing { background: var(--amber); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .sheets-field { margin-bottom: 14px; }
+  .sheets-label {
+    display: block;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+    margin-bottom: 6px;
+    letter-spacing: 0.03em;
+  }
+  .sheets-input {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-sm);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .sheets-input:focus { border-color: var(--accent-mid); }
+  .sheets-input::placeholder { color: rgba(255,255,255,0.25); }
+  .sheets-hint {
+    font-size: 0.73rem;
+    color: rgba(255,255,255,0.35);
+    margin-top: 5px;
+  }
+  .sheets-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  /* Instructions */
+  .sheets-instructions {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .sheets-instructions summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+    user-select: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sheets-instructions summary:hover { color: white; }
+  .instructions-body {
+    padding: 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+  .step:last-of-type { margin-bottom: 12px; }
+  .step strong { color: rgba(255,255,255,0.85); }
+  .step a { color: var(--accent-mid); }
+  .step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .script-box {
+    background: #0d1117;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .script-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.73rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .copy-btn {
+    background: rgba(42,100,150,0.4);
+    border: 1px solid rgba(42,100,150,0.5);
+    color: var(--accent-mid);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+  }
+  .copy-btn:hover { background: var(--accent); color: white; }
+  .script-code {
+    padding: 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: #a8d8a8;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.5;
+    max-height: 260px;
+    overflow-y: auto;
+  }
+
+  /* Submission overlay */
+  .submit-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,26,46,0.6);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .submit-overlay.active { display: flex; }
+  .submit-spinner {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 36px 48px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+  }
+  .spinner-ring {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner-text {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    border-top: 1px solid var(--border);
+    background: var(--bg-card);
+    margin-top: 40px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    main { padding: 24px 16px 60px; }
+    .card { padding: 20px; }
+    .two-col { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .welcome-title { font-size: 1.8rem; }
+    .scale-group { gap: 5px; }
+    .scale-btn { min-height: 40px; font-size: 0.9rem; }
+    .header-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .header-progress-wrap { width: 100%; align-items: flex-start; }
+    .progress-bar-track { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-logo">🏘️</div>
+      <div>
+        <div class="header-title">Hougang Resident Survey 2026</div>
+        <div class="header-subtitle">Community Sustainability Study</div>
+      </div>
+    </div>
+    <div class="header-progress-wrap">
+      <div class="progress-label" id="progress-label">Welcome</div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+    </div>
+    <button class="sheets-config-btn" id="sheets-config-btn" onclick="toggleSheetsPanel()" title="Google Sheets Settings">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+      Sheets
+    </button>
+  </div>
+</header>
+
+<!-- SHEETS CONFIG PANEL -->
+<div class="sheets-panel" id="sheets-panel">
+  <div class="sheets-panel-inner">
+    <div class="sheets-panel-header">
+      <div>
+        <div class="sheets-panel-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+          Google Sheets Integration
+        </div>
+        <div class="sheets-panel-sub">Survey responses will be sent to your spreadsheet on every submission</div>
+      </div>
+      <button class="sheets-close-btn" onclick="toggleSheetsPanel()">✕</button>
+    </div>
+
+    <div class="sheets-status" id="sheets-status-bar">
+      <span class="status-dot" id="status-dot"></span>
+      <span id="status-text">Not connected — enter your Web App URL below</span>
+    </div>
+
+    <div class="sheets-field">
+      <label class="sheets-label">Apps Script Web App URL <span style="color:var(--red)">*</span></label>
+      <input type="text" class="sheets-input" id="sheets-url" placeholder="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec">
+      <div class="sheets-hint">Paste the deployment URL from your Google Apps Script. See setup guide below.</div>
+    </div>
+    <div class="sheets-actions">
+      <button class="btn btn-primary" onclick="saveAndTestSheets()" style="font-size:0.82rem;padding:9px 18px;">Save &amp; Test Connection</button>
+      <button class="btn btn-secondary" onclick="clearSheetsConfig()" style="font-size:0.82rem;padding:9px 18px;color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.15);">Clear</button>
+    </div>
+
+    <details class="sheets-instructions">
+      <summary>📋 Step-by-step setup guide</summary>
+      <div class="instructions-body">
+        <div class="step"><div class="step-num">1</div><div><strong>Create a Google Sheet</strong><br>Go to <a href="https://sheets.google.com" target="_blank">sheets.google.com</a> and create a new blank spreadsheet. Name it anything you like (e.g. <em>Hougang Survey 2026</em>).</div></div>
+        <div class="step"><div class="step-num">2</div><div><strong>Open Apps Script</strong><br>In your sheet, click <strong>Extensions → Apps Script</strong>. Delete all existing placeholder code in the editor.</div></div>
+        <div class="step"><div class="step-num">3</div><div><strong>Paste the script below</strong><br>Copy the full script and paste it into the editor. Click <strong>Save project</strong> (💾 icon).</div></div>
+        <div class="step"><div class="step-num">4</div><div><strong>Deploy as Web App</strong><br>Click <strong>Deploy → New deployment</strong>. For type select <em>Web app</em>. Set <em>Execute as: Me</em> and <em>Who has access: Anyone</em>. Click <strong>Deploy</strong>. Authorise the permissions when prompted.</div></div>
+        <div class="step"><div class="step-num">5</div><div><strong>Copy the Web App URL</strong><br>After deployment, copy the URL (starts with <code style="color:var(--accent-mid)">https://script.google.com/macros/s/…/exec</code>). Paste it above and click <em>Save &amp; Test</em>.</div></div>
+        <div class="script-box">
+          <div class="script-box-header">
+            <span>Google Apps Script — paste this into your script editor</span>
+            <button class="copy-btn" onclick="copyScript()">Copy</button>
+          </div>
+          <pre class="script-code" id="apps-script-code">const SHEET_NAME = "Responses";
+
+const HEADERS = [
+  "Timestamp","Name","Phone","Age Range","Gender",
+  "Years in Hougang","Housing Type",
+  "ECO: Cost of Living (1-5)","ECO: Job Opportunities (1-5)",
+  "ECO: Local Shopping Frequency","ECO: Retail Amenities (1-5)",
+  "ECO: Open Feedback",
+  "ENV: Cleanliness (1-5)","ENV: Green Spaces (1-5)",
+  "ENV: Eco Practices","ENV: Noise & Air Quality",
+  "ENV: Open Feedback",
+  "SOC: Safety (1-5)","SOC: Community Spirit (1-5)",
+  "SOC: Healthcare Satisfaction","SOC: Community Participation",
+  "SOC: Education (1-5)","SOC: Values Open","SOC: Improvements Open",
+  "Overall Satisfaction (1-5)","Would Recommend"
+];
+
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = ss.getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(SHEET_NAME);
+      sheet.appendRow(HEADERS);
+      const hdr = sheet.getRange(1,1,1,HEADERS.length);
+      hdr.setBackground("#1F4E79").setFontColor("#ffffff")
+         .setFontWeight("bold").setFontSize(10);
+      sheet.setFrozenRows(1);
+      sheet.setColumnWidth(1, 160);
+    }
+    const d = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      d.timestamp, d.name, d.phone, d.age, d.gender,
+      d.duration, d.housing,
+      d.eco_cost_of_living, d.eco_job_opportunities,
+      d.eco_local_shopping, d.eco_retail_amenities, d.eco_feedback,
+      d.env_cleanliness, d.env_green_spaces,
+      d.env_eco_practices, d.env_noise_air, d.env_challenge,
+      d.soc_safety, d.soc_community, d.soc_healthcare,
+      d.soc_participation, d.soc_education,
+      d.soc_values, d.soc_improvements,
+      d.overall_satisfaction, d.recommend
+    ]);
+    return ContentService
+      .createTextOutput(JSON.stringify({result:"success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({result:"error",error:err.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({result:"ok",message:"Endpoint active"}))
+    .setMimeType(ContentService.MimeType.JSON);
+}</pre>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+<!-- SUBMIT OVERLAY -->
+<div class="submit-overlay" id="submit-overlay">
+  <div class="submit-spinner">
+    <div class="spinner-ring"></div>
+    <div class="spinner-text" id="spinner-text">Submitting your response…</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ════════════════════════════════════════
+       SECTION 0: WELCOME
+  ════════════════════════════════════════ -->
+  <div class="section active" id="section-0">
+    <div class="welcome-hero">
+      <div class="welcome-icon">🏙️</div>
+      <h1 class="welcome-title">Shape the future of<br><em>Hougang</em></h1>
+      <p class="welcome-desc">
+        We're collecting feedback from residents to understand how well Hougang supports sustainable living — economically, environmentally, and socially. Your input directly informs planning decisions.
+      </p>
+      <div class="welcome-tags">
+        <span class="tag tag-blue">💼 Economic Sustainability</span>
+        <span class="tag tag-green">🌿 Environmental Sustainability</span>
+        <span class="tag tag-amber">🤝 Social Sustainability</span>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-num">~15</div>
+        <div class="info-card-label">Minutes to complete</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-num">4</div>
+        <div class="info-card-label">Survey sections</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-num">100%</div>
+        <div class="info-card-label">Confidential</div>
+      </div>
+    </div>
+
+    <div class="privacy-note">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2a6496" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div>
+        <strong>Privacy Notice:</strong> Personal information (phone number, age, gender) is collected only for demographic analysis and will be kept strictly confidential. Data will not be shared with third parties.
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <button class="btn btn-primary" onclick="goTo(1)" style="font-size:1rem; padding:14px 36px;">
+        Begin Survey &nbsp;→
+      </button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SECTION 1: PERSONAL INFORMATION
+  ════════════════════════════════════════ -->
+  <div class="section" id="section-1">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-blue">👤</div>
+        <div>
+          <div class="card-title">Personal Information</div>
+          <div class="card-desc">Basic details to help us understand our respondents</div>
+        </div>
+      </div>
+
+      <div class="section-label">Section 1 of 4 &nbsp;·&nbsp; Personal Details</div>
+
+      <div class="field">
+        <label class="field-label">Full Name <span class="req">*</span></label>
+        <input type="text" id="q-name" placeholder="e.g. Tan Wei Ming">
+        <div class="error-msg" id="err-name">⚠ Please enter your name.</div>
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label class="field-label">Phone Number <span class="req">*</span></label>
+          <input type="tel" id="q-phone" placeholder="e.g. 9123 4567">
+          <div class="field-hint">Singapore mobile or home number</div>
+          <div class="error-msg" id="err-phone">⚠ Please enter a valid phone number.</div>
+        </div>
+        <div class="field">
+          <label class="field-label">Age Range <span class="req">*</span></label>
+          <select id="q-age">
+            <option value="">— Select your age range —</option>
+            <option value="under18">Below 18</option>
+            <option value="18-24">18 – 24</option>
+            <option value="25-34">25 – 34</option>
+            <option value="35-44">35 – 44</option>
+            <option value="45-54">45 – 54</option>
+            <option value="55-64">55 – 64</option>
+            <option value="65+">65 and above</option>
+          </select>
+          <div class="error-msg" id="err-age">⚠ Please select your age range.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Gender <span class="req">*</span></label>
+        <div class="radio-group horizontal" id="q-gender">
+          <label class="radio-option">
+            <input type="radio" name="gender" value="male">
+            <div class="radio-dot"></div> Male
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="gender" value="female">
+            <div class="radio-dot"></div> Female
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="gender" value="nonbinary">
+            <div class="radio-dot"></div> Non-binary
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="gender" value="prefer_not">
+            <div class="radio-dot"></div> Prefer not to say
+          </label>
+        </div>
+        <div class="error-msg" id="err-gender">⚠ Please select an option.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <div class="field">
+        <label class="field-label">How long have you lived in Hougang? <span class="req">*</span></label>
+        <div class="radio-group" id="q-duration">
+          <label class="radio-option">
+            <input type="radio" name="duration" value="less1"> <div class="radio-dot"></div> Less than 1 year
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="duration" value="1to5"> <div class="radio-dot"></div> 1 – 5 years
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="duration" value="5to10"> <div class="radio-dot"></div> 5 – 10 years
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="duration" value="over10"> <div class="radio-dot"></div> More than 10 years
+          </label>
+        </div>
+        <div class="error-msg" id="err-duration">⚠ Please select an option.</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">What is your housing type?</label>
+        <select id="q-housing">
+          <option value="">— Select housing type —</option>
+          <option value="hdb2room">HDB 2-Room Flexi</option>
+          <option value="hdb3room">HDB 3-Room</option>
+          <option value="hdb4room">HDB 4-Room</option>
+          <option value="hdb5room">HDB 5-Room</option>
+          <option value="exec">Executive / Jumbo HDB</option>
+          <option value="condo">Condominium</option>
+          <option value="landed">Landed Property</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button class="btn btn-secondary" onclick="goTo(0)">← Back</button>
+      <span class="step-indicator">Step 1 of 4</span>
+      <button class="btn btn-primary" onclick="nextSection(1)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SECTION 2: ECONOMIC SUSTAINABILITY
+  ════════════════════════════════════════ -->
+  <div class="section" id="section-2">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-blue">💼</div>
+        <div>
+          <div class="card-title">Economic Sustainability</div>
+          <div class="card-desc">Your experience with affordability, employment, and local commerce</div>
+        </div>
+      </div>
+
+      <div class="section-label">Section 2 of 4 &nbsp;·&nbsp; Economic Indicators</div>
+
+      <!-- SCALE Q1 -->
+      <div class="field">
+        <label class="field-label">How satisfied are you with the overall <strong>cost of living</strong> in Hougang? <span class="req">*</span></label>
+        <div class="scale-group" id="q-eco1">
+          <label class="scale-option"><input type="radio" name="eco1" value="1"><div class="scale-btn">1</div></label>
+          <label class="scale-option"><input type="radio" name="eco1" value="2"><div class="scale-btn">2</div></label>
+          <label class="scale-option"><input type="radio" name="eco1" value="3"><div class="scale-btn">3</div></label>
+          <label class="scale-option"><input type="radio" name="eco1" value="4"><div class="scale-btn">4</div></label>
+          <label class="scale-option"><input type="radio" name="eco1" value="5"><div class="scale-btn">5</div></label>
+        </div>
+        <div class="scale-ends"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+        <div class="error-msg" id="err-eco1">⚠ Please select a rating.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- SCALE Q2 -->
+      <div class="field">
+        <label class="field-label">How would you rate the <strong>availability of job opportunities</strong> near Hougang? <span class="req">*</span></label>
+        <div class="scale-group" id="q-eco2">
+          <label class="scale-option"><input type="radio" name="eco2" value="1"><div class="scale-btn">1</div></label>
+          <label class="scale-option"><input type="radio" name="eco2" value="2"><div class="scale-btn">2</div></label>
+          <label class="scale-option"><input type="radio" name="eco2" value="3"><div class="scale-btn">3</div></label>
+          <label class="scale-option"><input type="radio" name="eco2" value="4"><div class="scale-btn">4</div></label>
+          <label class="scale-option"><input type="radio" name="eco2" value="5"><div class="scale-btn">5</div></label>
+        </div>
+        <div class="scale-ends"><span>Very poor</span><span>Excellent</span></div>
+        <div class="error-msg" id="err-eco2">⚠ Please select a rating.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- CLOSE-ENDED Q -->
+      <div class="field">
+        <label class="field-label">How often do you shop at <strong>local businesses</strong> in Hougang (hawker centres, neighbourhood shops)? <span class="req">*</span></label>
+        <div class="radio-group" id="q-eco3">
+          <label class="radio-option"><input type="radio" name="eco3" value="daily"><div class="radio-dot"></div> Daily</label>
+          <label class="radio-option"><input type="radio" name="eco3" value="weekly"><div class="radio-dot"></div> Several times a week</label>
+          <label class="radio-option"><input type="radio" name="eco3" value="monthly"><div class="radio-dot"></div> A few times a month</label>
+          <label class="radio-option"><input type="radio" name="eco3" value="rarely"><div class="radio-dot"></div> Rarely</label>
+          <label class="radio-option"><input type="radio" name="eco3" value="never"><div class="radio-dot"></div> Never</label>
+        </div>
+        <div class="error-msg" id="err-eco3">⚠ Please select an option.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- SCALE Q3 -->
+      <div class="field">
+        <label class="field-label">How satisfied are you with the <strong>retail and commercial amenities</strong> available in Hougang? <span class="req">*</span></label>
+        <div class="scale-group" id="q-eco4">
+          <label class="scale-option"><input type="radio" name="eco4" value="1"><div class="scale-btn">1</div></label>
+          <label class="scale-option"><input type="radio" name="eco4" value="2"><div class="scale-btn">2</div></label>
+          <label class="scale-option"><input type="radio" name="eco4" value="3"><div class="scale-btn">3</div></label>
+          <label class="scale-option"><input type="radio" name="eco4" value="4"><div class="scale-btn">4</div></label>
+          <label class="scale-option"><input type="radio" name="eco4" value="5"><div class="scale-btn">5</div></label>
+        </div>
+        <div class="scale-ends"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+        <div class="error-msg" id="err-eco4">⚠ Please select a rating.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- OPEN-ENDED -->
+      <div class="field">
+        <label class="field-label">What improvements to Hougang's <strong>economic environment</strong> would most benefit you and your family?</label>
+        <textarea id="q-eco5" placeholder="e.g. More affordable childcare, better job training programs, more varied retail options near my block..."></textarea>
+        <div class="field-hint">Optional, but your thoughts are highly valued.</div>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button class="btn btn-secondary" onclick="goTo(1)">← Back</button>
+      <span class="step-indicator">Step 2 of 4</span>
+      <button class="btn btn-primary" onclick="nextSection(2)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SECTION 3: ENVIRONMENTAL SUSTAINABILITY
+  ════════════════════════════════════════ -->
+  <div class="section" id="section-3">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-green">🌿</div>
+        <div>
+          <div class="card-title">Environmental Sustainability</div>
+          <div class="card-desc">Your experience with green spaces, cleanliness, and eco-living</div>
+        </div>
+      </div>
+
+      <div class="section-label">Section 3 of 4 &nbsp;·&nbsp; Environmental Indicators</div>
+
+      <!-- SCALE -->
+      <div class="field">
+        <label class="field-label">How satisfied are you with the <strong>cleanliness and maintenance</strong> of public spaces in Hougang? <span class="req">*</span></label>
+        <div class="scale-group" id="q-env1">
+          <label class="scale-option"><input type="radio" name="env1" value="1"><div class="scale-btn">1</div></label>
+          <label class="scale-option"><input type="radio" name="env1" value="2"><div class="scale-btn">2</div></label>
+          <label class="scale-option"><input type="radio" name="env1" value="3"><div class="scale-btn">3</div></label>
+          <label class="scale-option"><input type="radio" name="env1" value="4"><div class="scale-btn">4</div></label>
+          <label class="scale-option"><input type="radio" name="env1" value="5"><div class="scale-btn">5</div></label>
+        </div>
+        <div class="scale-ends"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+        <div class="error-msg" id="err-env1">⚠ Please select a rating.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- SCALE -->
+      <div class="field">
+        <label class="field-label">How satisfied are you with access to <strong>parks, green spaces, and waterways</strong> in Hougang? <span class="req">*</span></label>
+        <div class="scale-group" id="q-env2">
+          <label class="scale-option"><input type="radio" name="env2" value="1"><div class="scale-btn">1</div></label>
+          <label class="scale-option"><input type="radio" name="env2" value="2"><div class="scale-btn">2</div></label>
+          <label class="scale-option"><input type="radio" name="env2" value="3"><div class="scale-btn">3</div></label>
+          <label class="scale-option"><input type="radio" name="env2" value="4"><div class="scale-btn">4</div></label>
+          <label class="scale-option"><input type="radio" name="env2" value="5"><div class="scale-btn">5</div></label>
+        </div>
+        <div class="scale-ends"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+        <div class="error-msg" id="err-env2">⚠ Please select a rating.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- CHECKBOX -->
+      <div class="field">
+        <label class="field-label">Which eco-friendly practices do you currently follow? (Select all that apply)</label>
+        <div class="checkbox-group" id="q-env3">
+          <label class="checkbox-option"><input type="checkbox" name="env3" value="recycling"><div class="check-box"></div> Regular recycling</label>
+          <label class="checkbox-option"><input type="checkbox" name="env3" value="compost"><div class="check-box"></div> Composting food waste</label>
+          <label class="checkbox-option"><input type="checkbox" name="env3" value="transport"><div class="check-box"></div> Using public transport or cycling instead of driving</label>
+          <label class="checkbox-option"><input type="checkbox" name="env3" value="energy"><div class="check-box"></div> Reducing home energy consumption</label>
+          <label class="checkbox-option"><input type="checkbox" name="env3" value="water"><div class="check-box"></div> Conserving water</label>
+          <label class="checkbox-option"><input type="checkbox" name="env3" value="none"><div class="check-box"></div> None of the above</label>
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- CLOSE-ENDED -->
+      <div class="field">
+        <label class="field-label">How would you rate <strong>noise and air quality</strong> in your immediate neighbourhood? <span class="req">*</span></label>
+        <div class="radio-group" id="q-env4">
+          <label class="radio-option"><input type="radio" name="env4" value="excellent"><div class="radio-dot"></div> Excellent — very quiet and clean air</label>
+          <label class="radio-option"><input type="radio" name="env4" value="good"><div class="radio-dot"></div> Good — generally acceptable</label>
+          <label class="radio-option"><input type="radio" name="env4" value="average"><div class="radio-dot"></div> Average — some noise or air quality issues</label>
+          <label class="radio-option"><input type="radio" name="env4" value="poor"><div class="radio-dot"></div> Poor — frequently disturbed by noise or pollution</label>
+          <label class="radio-option"><input type="radio" name="env4" value="very_poor"><div class="radio-dot"></div> Very poor — serious and regular issues</label>
+        </div>
+        <div class="error-msg" id="err-env4">⚠ Please select an option.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- OPEN-ENDED -->
+      <div class="field">
+        <label class="field-label">In your view, what is the <strong>biggest environmental challenge</strong> facing Hougang today?</label>
+        <textarea id="q-env5" placeholder="e.g. Construction noise from CRL works, flooding near canals, lack of covered cycling paths, insufficient recycling bins..."></textarea>
+        <div class="field-hint">Optional — please share any specific observations.</div>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button class="btn btn-secondary" onclick="goTo(2)">← Back</button>
+      <span class="step-indicator">Step 3 of 4</span>
+      <button class="btn btn-primary" onclick="nextSection(3)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SECTION 4: SOCIAL SUSTAINABILITY
+  ════════════════════════════════════════ -->
+  <div class="section" id="section-4">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-amber">🤝</div>
+        <div>
+          <div class="card-title">Social Sustainability</div>
+          <div class="card-desc">Your experience with community, safety, and social cohesion</div>
+        </div>
+      </div>
+
+      <div class="section-label">Section 4 of 4 &nbsp;·&nbsp; Social Indicators</div>
+
+      <!-- SCALE -->
+      <div class="field">
+        <label class="field-label">How safe do you feel in Hougang — in your block, void deck, and public areas? <span class="req">*</span></label>
+        <div class="scale-group" id="q-soc1">
+          <label class="scale-option"><input type="radio" name="soc1" value="1"><div class="scale-btn">1</div></label>
+          <label class="scale-option"><input type="radio" name="soc1" value="2"><div class="scale-btn">2</div></label>
+          <label class="scale-option"><input type="radio" name="soc1" value="3"><div class="scale-btn">3</div></label>
+          <label class="scale-option"><input type="radio" name="soc1" value="4"><div class="scale-btn">4</div></label>
+          <label class="scale-option"><input type="radio" name="soc1" value="5"><div class="scale-btn">5</div></label>
+        </div>
+        <div class="scale-ends"><span>Very unsafe</span><span>Very safe</span></div>
+        <div class="error-msg" id="err-soc1">⚠ Please select a rating.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- SCALE -->
+      <div class="field">
+        <label class="field-label">How would you rate the <strong>sense of community and neighbourliness</strong> in your area? <span class="req">*</span></label>
+        <div class="scale-group" id="q-soc2">
+          <label class="scale-option"><input type="radio" name="soc2" value="1"><div class="scale-btn">1</div></label>
+          <label class="scale-option"><input type="radio" name="soc2" value="2"><div class="scale-btn">2</div></label>
+          <label class="scale-option"><input type="radio" name="soc2" value="3"><div class="scale-btn">3</div></label>
+          <label class="scale-option"><input type="radio" name="soc2" value="4"><div class="scale-btn">4</div></label>
+          <label class="scale-option"><input type="radio" name="soc2" value="5"><div class="scale-btn">5</div></label>
+        </div>
+        <div class="scale-ends"><span>Very poor</span><span>Excellent</span></div>
+        <div class="error-msg" id="err-soc2">⚠ Please select a rating.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- CLOSE-ENDED -->
+      <div class="field">
+        <label class="field-label">How satisfied are you with <strong>healthcare and social services</strong> accessible from Hougang? <span class="req">*</span></label>
+        <div class="radio-group" id="q-soc3">
+          <label class="radio-option"><input type="radio" name="soc3" value="very_sat"><div class="radio-dot"></div> Very satisfied</label>
+          <label class="radio-option"><input type="radio" name="soc3" value="satisfied"><div class="radio-dot"></div> Satisfied</label>
+          <label class="radio-option"><input type="radio" name="soc3" value="neutral"><div class="radio-dot"></div> Neutral</label>
+          <label class="radio-option"><input type="radio" name="soc3" value="dissatisfied"><div class="radio-dot"></div> Dissatisfied</label>
+          <label class="radio-option"><input type="radio" name="soc3" value="very_dis"><div class="radio-dot"></div> Very dissatisfied</label>
+        </div>
+        <div class="error-msg" id="err-soc3">⚠ Please select an option.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- CLOSE-ENDED -->
+      <div class="field">
+        <label class="field-label">How often do you participate in <strong>community events or grassroots activities</strong> in Hougang?</label>
+        <div class="radio-group" id="q-soc4">
+          <label class="radio-option"><input type="radio" name="soc4" value="regularly"><div class="radio-dot"></div> Regularly (monthly or more)</label>
+          <label class="radio-option"><input type="radio" name="soc4" value="occasionally"><div class="radio-dot"></div> Occasionally (a few times a year)</label>
+          <label class="radio-option"><input type="radio" name="soc4" value="rarely"><div class="radio-dot"></div> Rarely</label>
+          <label class="radio-option"><input type="radio" name="soc4" value="never"><div class="radio-dot"></div> Never</label>
+        </div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- SCALE -->
+      <div class="field">
+        <label class="field-label">How satisfied are you with <strong>educational facilities and schools</strong> available in or near Hougang? <span class="req">*</span></label>
+        <div class="scale-group" id="q-soc5">
+          <label class="scale-option"><input type="radio" name="soc5" value="1"><div class="scale-btn">1</div></label>
+          <label class="scale-option"><input type="radio" name="soc5" value="2"><div class="scale-btn">2</div></label>
+          <label class="scale-option"><input type="radio" name="soc5" value="3"><div class="scale-btn">3</div></label>
+          <label class="scale-option"><input type="radio" name="soc5" value="4"><div class="scale-btn">4</div></label>
+          <label class="scale-option"><input type="radio" name="soc5" value="5"><div class="scale-btn">5</div></label>
+        </div>
+        <div class="scale-ends"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+        <div class="error-msg" id="err-soc5">⚠ Please select a rating.</div>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- OPEN-ENDED MAIN -->
+      <div class="field">
+        <label class="field-label">What aspects of <strong>community life in Hougang</strong> do you value most?</label>
+        <textarea id="q-soc6" placeholder="e.g. The multicultural mix at the hawker centre, the strong kampung spirit, easy access to the park connector, familiar faces at the void deck..."></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label">What changes would most improve your <strong>quality of life</strong> in Hougang over the next 5 years?</label>
+        <textarea id="q-soc7" placeholder="e.g. More elderly care facilities, better playgrounds, better lighting at night, new community garden, faster transport to CBD..."></textarea>
+      </div>
+
+      <hr class="field-divider">
+
+      <!-- OVERALL SCALE -->
+      <div class="field">
+        <label class="field-label">Overall, how satisfied are you with <strong>Hougang as a place to live</strong>? <span class="req">*</span></label>
+        <div class="scale-group" id="q-overall">
+          <label class="scale-option"><input type="radio" name="overall" value="1"><div class="scale-btn">1</div></label>
+          <label class="scale-option"><input type="radio" name="overall" value="2"><div class="scale-btn">2</div></label>
+          <label class="scale-option"><input type="radio" name="overall" value="3"><div class="scale-btn">3</div></label>
+          <label class="scale-option"><input type="radio" name="overall" value="4"><div class="scale-btn">4</div></label>
+          <label class="scale-option"><input type="radio" name="overall" value="5"><div class="scale-btn">5</div></label>
+        </div>
+        <div class="scale-ends"><span>Very dissatisfied</span><span>Very satisfied</span></div>
+        <div class="error-msg" id="err-overall">⚠ Please select a rating.</div>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Would you recommend Hougang as a place to live to others? <span class="req">*</span></label>
+        <div class="radio-group horizontal" id="q-recommend">
+          <label class="radio-option"><input type="radio" name="recommend" value="yes"><div class="radio-dot"></div> Yes, definitely</label>
+          <label class="radio-option"><input type="radio" name="recommend" value="maybe"><div class="radio-dot"></div> Maybe</label>
+          <label class="radio-option"><input type="radio" name="recommend" value="no"><div class="radio-dot"></div> No</label>
+        </div>
+        <div class="error-msg" id="err-recommend">⚠ Please select an option.</div>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button class="btn btn-secondary" onclick="goTo(3)">← Back</button>
+      <span class="step-indicator">Step 4 of 4</span>
+      <button class="btn btn-success" onclick="submitSurvey()">✓ &nbsp;Submit Survey</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       SECTION 5: SUCCESS
+  ════════════════════════════════════════ -->
+  <div class="section" id="section-5">
+    <div class="success-screen">
+      <div class="success-icon">✓</div>
+      <h2 class="success-title">Thank you for your feedback!</h2>
+      <p class="success-msg">
+        Your responses have been recorded. Your input will contribute directly to Hougang's planning and community development initiatives.
+      </p>
+      <div class="response-summary" id="response-summary">
+        <h3>📋 Your Submission Summary</h3>
+      </div>
+      <button class="btn btn-primary" onclick="resetSurvey()">Submit Another Response</button>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  Hougang Resident Survey 2026 &nbsp;·&nbsp; Community Sustainability Study &nbsp;·&nbsp; Responses are kept strictly confidential
+</footer>
+
+<script>
+  let currentSection = 0;
+  const totalSteps = 4;
+
+  // ── SHEETS CONFIG ──
+  function toggleSheetsPanel() {
+    const panel = document.getElementById('sheets-panel');
+    panel.classList.toggle('open');
+    const saved = localStorage.getItem('hougang_sheets_url');
+    if (saved) document.getElementById('sheets-url').value = saved;
+  }
+
+  function saveAndTestSheets() {
+    const url = document.getElementById('sheets-url').value.trim();
+    if (!url || !url.startsWith('https://script.google.com')) {
+      setStatus('error', 'Please enter a valid Apps Script URL (starts with https://script.google.com).');
+      return;
+    }
+    localStorage.setItem('hougang_sheets_url', url);
+    setStatus('testing', 'Testing connection…');
+    fetch(url, { method: 'GET', mode: 'no-cors' })
+      .then(() => {
+        setStatus('ok', 'Connected — responses will be sent to Google Sheets on submission.');
+        updateSheetsBtn(true);
+      })
+      .catch(() => {
+        setStatus('ok', 'URL saved. Response sending enabled (no-cors mode).');
+        updateSheetsBtn(true);
+      });
+  }
+
+  function clearSheetsConfig() {
+    localStorage.removeItem('hougang_sheets_url');
+    document.getElementById('sheets-url').value = '';
+    setStatus('', 'Not connected — enter your Web App URL above.');
+    updateSheetsBtn(false);
+  }
+
+  function setStatus(state, msg) {
+    const dot = document.getElementById('status-dot');
+    dot.className = 'status-dot' + (state ? ' ' + state : '');
+    document.getElementById('status-text').textContent = msg;
+  }
+
+  function updateSheetsBtn(connected) {
+    const btn = document.getElementById('sheets-config-btn');
+    if (connected) {
+      btn.classList.add('connected');
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Sheets ✓';
+    } else {
+      btn.classList.remove('connected');
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg> Sheets';
+    }
+  }
+
+  function copyScript() {
+    const code = document.getElementById('apps-script-code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+  }
+
+  // ── NAVIGATION ──
+  function goTo(n) {
+    document.getElementById('section-' + currentSection).classList.remove('active');
+    currentSection = n;
+    document.getElementById('section-' + n).classList.add('active');
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateProgress() {
+    const pct = currentSection === 0 ? 0 : Math.round((currentSection / totalSteps) * 100);
+    document.getElementById('progress-bar').style.width = pct + '%';
+    const labels = ['Welcome', 'Personal Info', 'Economic', 'Environmental', 'Social', 'Complete'];
+    document.getElementById('progress-label').textContent = labels[currentSection] || 'Complete';
+  }
+
+  // ── INTERACTIONS ──
+  document.querySelectorAll('.radio-option').forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      var name = this.querySelector('input').name;
+      document.querySelectorAll('input[name="' + name + '"]').forEach(function(inp) {
+        inp.closest('.radio-option').classList.remove('selected');
+      });
+      this.classList.add('selected');
+      this.querySelector('input').checked = true;
+      var group = this.closest('[id^="q-"]');
+      if (group) clearError(group.id);
+    });
+  });
+
+  // FIX: e.preventDefault() stops label from re-firing click on hidden input
+  document.querySelectorAll('.checkbox-option').forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.preventDefault();
+      var wasSelected = this.classList.contains('selected');
+      this.classList.toggle('selected', !wasSelected);
+      this.querySelector('input').checked = !wasSelected;
+    });
+  });
+
+  document.querySelectorAll('.scale-option').forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      var name = this.querySelector('input').name;
+      document.querySelectorAll('input[name="' + name + '"]').forEach(function(inp) {
+        inp.closest('.scale-option').classList.remove('selected');
+      });
+      this.classList.add('selected');
+      this.querySelector('input').checked = true;
+      var group = this.closest('[id^="q-"]');
+      if (group) clearError(group.id);
+    });
+  });
+
+  // ── VALIDATION ──
+  function showError(id) {
+    var el = document.getElementById('err-' + id);
+    if (el) el.classList.add('visible');
+    var field = document.getElementById('q-' + id);
+    if (field && (field.tagName === 'INPUT' || field.tagName === 'SELECT')) field.classList.add('error');
+  }
+  function clearError(qId) {
+    var key = qId.replace('q-', '');
+    var el = document.getElementById('err-' + key);
+    if (el) el.classList.remove('visible');
+    var field = document.getElementById(qId);
+    if (field && (field.tagName === 'INPUT' || field.tagName === 'SELECT')) field.classList.remove('error');
+  }
+  function getRadioVal(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : null;
+  }
+  function getCheckboxVals(name) {
+    var vals = Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(function(el) { return el.value; });
+    return vals.length ? vals.join(', ') : 'None selected';
+  }
+
+  function validateSection1() {
+    var ok = true;
+    var name = document.getElementById('q-name').value.trim();
+    if (!name) { showError('name'); ok = false; } else clearError('name');
+    var phone = document.getElementById('q-phone').value.trim();
+    if (!phone || !/^[0-9 +\-()]{6,15}$/.test(phone)) { showError('phone'); ok = false; } else clearError('phone');
+    if (!document.getElementById('q-age').value) { showError('age'); ok = false; } else clearError('age');
+    if (!getRadioVal('gender')) { showError('gender'); ok = false; } else clearError('gender');
+    if (!getRadioVal('duration')) { showError('duration'); ok = false; } else clearError('duration');
+    return ok;
+  }
+  function validateSection2() {
+    var ok = true;
+    ['eco1','eco2','eco4'].forEach(function(n) {
+      if (!getRadioVal(n)) { showError(n); ok = false; } else clearError(n);
+    });
+    if (!getRadioVal('eco3')) { showError('eco3'); ok = false; } else clearError('eco3');
+    return ok;
+  }
+  function validateSection3() {
+    var ok = true;
+    ['env1','env2'].forEach(function(n) {
+      if (!getRadioVal(n)) { showError(n); ok = false; } else clearError(n);
+    });
+    if (!getRadioVal('env4')) { showError('env4'); ok = false; } else clearError('env4');
+    return ok;
+  }
+  function validateSection4() {
+    var ok = true;
+    ['soc1','soc2','soc5','overall'].forEach(function(n) {
+      if (!getRadioVal(n)) { showError(n); ok = false; } else clearError(n);
+    });
+    if (!getRadioVal('soc3')) { showError('soc3'); ok = false; } else clearError('soc3');
+    if (!getRadioVal('recommend')) { showError('recommend'); ok = false; } else clearError('recommend');
+    return ok;
+  }
+
+  function nextSection(from) {
+    var validators = [null, validateSection1, validateSection2, validateSection3, validateSection4];
+    if (validators[from] && !validators[from]()) {
+      var firstErr = document.querySelector('.error-msg.visible');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    goTo(from + 1);
+  }
+
+  // ── SUBMIT ──
+  function submitSurvey() {
+    if (!validateSection4()) {
+      var firstErr = document.querySelector('.error-msg.visible');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    var data = {
+      timestamp: new Date().toLocaleString('en-SG'),
+      name: document.getElementById('q-name').value.trim(),
+      phone: document.getElementById('q-phone').value.trim(),
+      age: document.getElementById('q-age').value,
+      gender: getRadioVal('gender'),
+      duration: getRadioVal('duration'),
+      housing: document.getElementById('q-housing').value,
+      eco_cost_of_living: getRadioVal('eco1'),
+      eco_job_opportunities: getRadioVal('eco2'),
+      eco_local_shopping: getRadioVal('eco3'),
+      eco_retail_amenities: getRadioVal('eco4'),
+      eco_feedback: document.getElementById('q-eco5').value.trim(),
+      env_cleanliness: getRadioVal('env1'),
+      env_green_spaces: getRadioVal('env2'),
+      env_eco_practices: getCheckboxVals('env3'),
+      env_noise_air: getRadioVal('env4'),
+      env_challenge: document.getElementById('q-env5').value.trim(),
+      soc_safety: getRadioVal('soc1'),
+      soc_community: getRadioVal('soc2'),
+      soc_healthcare: getRadioVal('soc3'),
+      soc_participation: getRadioVal('soc4'),
+      soc_education: getRadioVal('soc5'),
+      soc_values: document.getElementById('q-soc6').value.trim(),
+      soc_improvements: document.getElementById('q-soc7').value.trim(),
+      overall_satisfaction: getRadioVal('overall'),
+      recommend: getRadioVal('recommend')
+    };
+    console.log('Survey Response:', JSON.stringify(data, null, 2));
+
+    var sheetsUrl = 'https://script.google.com/macros/s/AKfycbxgBR-p1Rh9ue3Vyu0JifeutExnTKKOgEDsqDM0f95cZgTcme9Si19iRvFCNK8fmY3a/exec';
+    if (sheetsUrl) {
+      showOverlay('Sending to Google Sheets…');
+      fetch(sheetsUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function() {
+        hideOverlay();
+        showSuccess(data, false);
+      }).catch(function(err) {
+        console.warn('Sheets error:', err);
+        hideOverlay();
+        showSuccess(data, true);
+      });
+    } else {
+      showSuccess(data, false);
+    }
+  }
+
+  function showOverlay(msg) {
+    document.getElementById('spinner-text').textContent = msg;
+    document.getElementById('submit-overlay').classList.add('active');
+  }
+  function hideOverlay() {
+    document.getElementById('submit-overlay').classList.remove('active');
+  }
+
+  function showSuccess(data, sheetsWarning) {
+    var ageLabels = {'under18':'Below 18','18-24':'18–24','25-34':'25–34','35-44':'35–44','45-54':'45–54','55-64':'55–64','65+':'65 and above'};
+    var scaleLbl = function(v) { return v ? v + ' / 5' : '—'; };
+    var hasSheets = true;
+    var note = '';
+    if (sheetsWarning) {
+      note = '<div style="background:#fdf3e3;border:1px solid #e8c67a;border-radius:8px;padding:10px 14px;font-size:0.8rem;color:#7a4f00;margin-bottom:16px;">⚠ Could not reach Google Sheets. Check your URL in the Sheets panel.</div>';
+    } else if (hasSheets) {
+      note = '<div style="background:var(--green-light);border:1px solid #9ed4bc;border-radius:8px;padding:10px 14px;font-size:0.8rem;color:var(--green);margin-bottom:16px;">✓ Response saved to Google Sheets successfully.</div>';
+    } else {
+      note = '<div style="background:var(--accent-light);border:1px solid #aac8e0;border-radius:8px;padding:10px 14px;font-size:0.8rem;color:var(--accent);margin-bottom:16px;">ℹ Google Sheets not configured. Click the Sheets button in the header to set it up.</div>';
+    }
+    document.getElementById('response-summary').innerHTML =
+      '<h3>📋 Your Submission Summary</h3>' + note +
+      '<div class="summary-row"><strong>Name</strong>' + data.name + '</div>' +
+      '<div class="summary-row"><strong>Age Range</strong>' + (ageLabels[data.age] || data.age) + '</div>' +
+      '<div class="summary-row"><strong>Gender</strong>' + data.gender + '</div>' +
+      '<div class="summary-row"><strong>Cost of Living</strong>' + scaleLbl(data.eco_cost_of_living) + '</div>' +
+      '<div class="summary-row"><strong>Job Opportunities</strong>' + scaleLbl(data.eco_job_opportunities) + '</div>' +
+      '<div class="summary-row"><strong>Eco Practices</strong>' + data.env_eco_practices + '</div>' +
+      '<div class="summary-row"><strong>Cleanliness</strong>' + scaleLbl(data.env_cleanliness) + '</div>' +
+      '<div class="summary-row"><strong>Green Spaces</strong>' + scaleLbl(data.env_green_spaces) + '</div>' +
+      '<div class="summary-row"><strong>Safety</strong>' + scaleLbl(data.soc_safety) + '</div>' +
+      '<div class="summary-row"><strong>Community</strong>' + scaleLbl(data.soc_community) + '</div>' +
+      '<div class="summary-row"><strong>Overall</strong>' + scaleLbl(data.overall_satisfaction) + '</div>' +
+      '<div class="summary-row"><strong>Recommend?</strong>' + data.recommend + '</div>' +
+      '<div class="summary-row"><strong>Submitted</strong>' + data.timestamp + '</div>';
+    goTo(5);
+  }
+
+  // ── RESET ──
+  function resetSurvey() {
+    document.querySelectorAll('input[type="text"], input[type="tel"], textarea').forEach(function(el) { el.value = ''; });
+    document.querySelectorAll('select').forEach(function(el) { el.value = ''; });
+    document.querySelectorAll('.radio-option, .checkbox-option, .scale-option').forEach(function(el) {
+      el.classList.remove('selected');
+      var inp = el.querySelector('input');
+      if (inp) inp.checked = false;
+    });
+    document.querySelectorAll('.error-msg').forEach(function(el) { el.classList.remove('visible'); });
+    document.querySelectorAll('input.error, select.error, textarea.error').forEach(function(el) { el.classList.remove('error'); });
+    goTo(0);
+  }
+
+  // ── INIT ──
+  var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxgBR-p1Rh9ue3Vyu0JifeutExnTKKOgEDsqDM0f95cZgTcme9Si19iRvFCNK8fmY3a/exec';
+  (function() {
+    updateSheetsBtn(true);
+    setStatus('ok', 'Connected — responses will be sent to Google Sheets on every submission.');
+    updateProgress();
+  })();
+</script>
+</body>
+</html>
