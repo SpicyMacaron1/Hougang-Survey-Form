@@ -1788,7 +1788,7 @@ function doGet(e) {
     };
     console.log('Survey Response:', JSON.stringify(data, null, 2));
 
-    var sheetsUrl = 'https://script.google.com/macros/s/AKfycbxgBR-p1Rh9ue3Vyu0JifeutExnTKKOgEDsqDM0f95cZgTcme9Si19iRvFCNK8fmY3a/exec';
+    var sheetsUrl = 'https://script.google.com/macros/s/AKfycbygxcm8MR2gv41WvqBBtyZzXqpZrU0Cwa4ycW-0Kmg_YrA6-WUQzsaL_HV099xCzsWq/exec';
     if (sheetsUrl) {
       showOverlay('Sending to Google Sheets…');
       fetch(sheetsUrl, {
@@ -1862,7 +1862,7 @@ function doGet(e) {
   }
 
   // ── INIT ──
-  var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxgBR-p1Rh9ue3Vyu0JifeutExnTKKOgEDsqDM0f95cZgTcme9Si19iRvFCNK8fmY3a/exec';
+  var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbygxcm8MR2gv41WvqBBtyZzXqpZrU0Cwa4ycW-0Kmg_YrA6-WUQzsaL_HV099xCzsWq/exec';
   (function() {
     updateSheetsBtn(true);
     setStatus('ok', 'Connected — responses will be sent to Google Sheets on every submission.');
